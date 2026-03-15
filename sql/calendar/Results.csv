@@ -1,0 +1,3 @@
+Id,TsUtc,NodeName,HATailScaleIP,TailScaleOk,TailScaleState,PingOk,SSHOk,CurlOk,CurlHttpCode,CurlTotalMs,Details,TargetName,PortOk,PortNumber
+1,2026-02-10 19:44:34,NULL,100.77.252.25,0,NULL,1,1,1,NULL,NULL,NULL,ha,0,NULL
+2,2026-02-10 19:44:39,NULL,100.77.252.25,1,NULL,1,1,1,NULL,NULL,NULL,ha,0,NULL
