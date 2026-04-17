@@ -1,0 +1,36 @@
+// deploy volunteer hours from dev ( russ home.mac)
+
+
+// TERMINAL:
+cd ~/Dev
+//  need to exclude node_modules/, .svelte-kit/, build/
+scp -r volhrs russ@micro-s-2:~/apps
+
+// goto microsd
+ssh russ@micro-s-2
+cd ~/apps/volhrs
+
+// copy .env from ~/apps to .
+cp ../.env .
+
+set -a; . ./.env; set +a
+npm install
+npm run build
+
+---  errors.
+
+ended looking for package-lock.json in volhrs/
+if found:
+
+rm -rf node_modules
+npm ci
+npm run build
+
+if not found
+rm -rf node_modules
+npm instal
+npm run build
+
+node build // this starts the server on port 3000
+
+yes on the 'rsync'

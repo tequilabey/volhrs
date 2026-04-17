@@ -1,0 +1,14 @@
+revision of scripts
+a: nested
+    cplt.sh     //:bkup-restore.sh
+	--> ss-svc.sh
+		--> rebuild.sh
+b: standalone
+    sa/_backup.sh
+    sa/_restore.sh
+    sa/_svc-stop.sh
+    sa/_svc-reset.sh
+    sa/_svc_start.sh
+    sa/_app-stop.sh
+    sa/_app-rebuild.sh
+
