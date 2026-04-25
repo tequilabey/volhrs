@@ -1,0 +1,30 @@
+#!/bin/bash
+set -euo pipefail
+
+APPID="volhrs"
+APPDIR="/opt/lodge/$APPID"
+SERVICE="volhrs"
+
+echo "=== Rebuild app: $APPID ==="
+cd "$APPDIR"
+
+echo "Stopping service..."
+_/svc_stop
+
+echo "Installing dependencies..."
+npm install
+
+echo "Building app..."
+npm run build
+
+echo "Writing build info..."
+mkdir -p build
+printf '{\n  "builtAt": "* %s *"\n}\n' "$(date -Iseconds)" > build/build-info.json
+
+echo "Starting service..."
+_/svc_init_start
+
+echo "Recent logs:"
+sudo journalctl -u "$SERVICE" -n 40 --no-pager
+
+echo "=== Rebuild complete ==="
