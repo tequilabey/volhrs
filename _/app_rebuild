@@ -22,7 +22,7 @@ npm run build
 
 echo "Writing build info..."
 mkdir -p build
-printf '{\n  "builtAt": "%s"\n}\n' "$(date -Iseconds)" > build/build-info.json
+printf '{\n  "builtAt": " * %s * "\n}\n' "$(date -Iseconds)" > build/build-info.json
 
 echo "Starting service..."
 _/svc_init_start
