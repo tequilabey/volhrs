@@ -6,5 +6,6 @@ export function getBuildInfo() {
   if (!fs.existsSync(p)) {
     return { builtAt: null };
   }
-  return JSON.parse(fs.readFileSync(p, 'utf-8'));
+return `[ build-info path=${p} exists=${fs.existsSync(p)} ]`;
+//return JSON.parse(fs.readFileSync(p, 'utf-8'));
 }
