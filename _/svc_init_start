@@ -1,0 +1,23 @@
+#!/bin/bash
+set -euo pipefail
+
+APPID="volhrs"
+APPDIR="/opt/lodge/$APPID"
+SERVICE="volhrs"
+
+echo "=== Initialize/start service: $SERVICE ==="
+
+if [ ! -f "$APPDIR/_/$SERVICE.service" ]; then
+  echo "ERROR: Missing service file: $APPDIR/_/$SERVICE.service"
+  exit 1
+fi
+
+sudo cp "$APPDIR/_/$SERVICE.service" "/etc/systemd/system/$SERVICE.service"
+
+# Remove stale local overrides unless you intentionally use them.
+sudo rm -f "/etc/systemd/system/$SERVICE.service.d/override.conf" || true
+
+sudo systemctl daemon-reload
+sudo systemctl enable "$SERVICE"
+sudo systemctl restart "$SERVICE"
+sudo systemctl status "$SERVICE" --no-pager

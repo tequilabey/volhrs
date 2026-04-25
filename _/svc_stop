@@ -1,0 +1,8 @@
+#!/bin/bash
+set -euo pipefail
+
+SERVICE="volhrs"
+
+echo "=== Stopping: $SERVICE ==="
+sudo systemctl stop "$SERVICE" || true
+sudo systemctl status "$SERVICE" --no-pager || true

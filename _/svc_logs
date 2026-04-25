@@ -1,0 +1,7 @@
+#!/bin/bash
+set -euo pipefail
+
+SERVICE="volhrs"
+LINES="${1:-80}"
+
+sudo journalctl -u "$SERVICE" -n "$LINES" -f
