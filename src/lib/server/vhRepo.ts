@@ -152,16 +152,19 @@ export async function usersVerifyLogin(args: {
   const pool = await getPool();
 
   const r0 = await pool.request().query("SELECT DB_NAME() as Db");
-  console.log("Connected to DB:", r0.recordset[0].Db);
+  console.log("usersVerifyLogin Connected to DB:", r0.recordset[0].Db);
   
   const r = await pool.request()
     .input("LoginName", sql.VarChar(50), loginName)
     .execute("el20.Users_GetByLoginName");
+  console.log('usersVerifyLogin LoginName:', loginName);
 
   const row = r.recordset?.[0];
+  console.log('usersVerifyLogin row:', row);
   if (!row) return null;
 
   const ok = await bcrypt.compare(args.password, row.PasswordHash);
+  console.log('usersVerifyLogin compare:', ok);
   if (!ok) return null;
 
   const roles = await rolesGetActiveByUserId(row.UserId);
